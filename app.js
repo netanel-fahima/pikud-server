@@ -1,41 +1,37 @@
 import express from "express";
-import cors from "cors";
 import fetch from "node-fetch";
 
 const app = express();
 const port = 9999;
 
-app.use(cors());
-
-app.get("/alerts", async (req, res) => {
+const sampleAlerts = async () => {
   try {
-    const response = await fetch(
-      "https://www.oref.org.il/warningMessages/alert/History/AlertsHistory.json",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          Referer: "https://www.oref.org.il/",
-        },
-      }
-    );
+    const response = await fetch("https://www.kore.co.il/redAlert.json");
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
-    const text = await response.text();
+    const data = await response.json();
+    const now = new Date().toLocaleTimeString("he-IL");
 
-    console.log("pikud-data", text);
+    if (!data) {
+      console.log(`[${now}] ❌ אין התראה`);
+      return;
+    }
 
-    const data = text.trim() ? JSON.parse(text ?? {}) : {}; // Ensure text is not empty
-    res.json(data);
+    console.log(`\n[${now}] 🚨🚨🚨 התקבלה התראה חדשה`);
+    console.log(data);
   } catch (error) {
-    console.error("Error fetching alerts:", error);
-    res.status(500).json({ error: "Failed to fetch alerts" });
+    const now = new Date().toLocaleTimeString("he-IL");
+    console.error(`[${now}] 🔥 שגיאה בשליפת התראה:`, error.message);
   }
-});
+};
 
+// דגימה כל שנייה
+setInterval(sampleAlerts, 1000);
+
+// הפעלת שרת רק כדי שלא יסגר התהליך (אין צורך ב-API)
 app.listen(port, () => {
-  console.log(`Proxy server running on port ${port}`);
+  console.log(`📡 Alert logger running (no API) on port ${port}`);
 });
