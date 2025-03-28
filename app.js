@@ -15,8 +15,6 @@ const sampleAlerts = async () => {
     const data = await response.json();
     const now = new Date().toLocaleTimeString("he-IL");
 
-    console.log(data);
-
     if (!data) {
       // console.log(`[${now}] ❌ אין התראה`, data);
       return;
@@ -31,7 +29,7 @@ const sampleAlerts = async () => {
 };
 
 // דגימה כל שנייה
-setInterval(sampleAlerts, 1000);
+setInterval(sampleAlerts, 500);
 
 // הפעלת שרת רק כדי שלא יסגר התהליך (אין צורך ב-API)
 app.listen(port, () => {
