@@ -52,7 +52,7 @@ const kikarAlerts = async () => {
     const data = await response.json();
     const now = new Date().toLocaleTimeString("he-IL");
 
-    if (!data) {
+    if (!data || !data?.length) {
       // console.log(`[${now}] ❌ אין התראה`, data);
       return;
     }
