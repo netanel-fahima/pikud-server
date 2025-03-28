@@ -15,6 +15,8 @@ const sampleAlerts = async () => {
     const data = await response.json();
     const now = new Date().toLocaleTimeString("he-IL");
 
+    console.log(data);
+
     if (!data) {
       // console.log(`[${now}] ❌ אין התראה`, data);
       return;
