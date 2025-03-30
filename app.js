@@ -26,7 +26,7 @@ const sampleAlerts = async () => {
     }
 
     console.log(`\n[${now}] 🚨🚨🚨 new kore alert`);
-    console.log("kore", data);
+    console.log("kore", JSON.stringify(data));
   } catch (error) {
     const now = new Date().toLocaleTimeString("he-IL");
     console.error(`[${now}] 🔥 שגיאה בשליפת התראה:`, error.message);
@@ -58,7 +58,7 @@ const kikarAlerts = async () => {
     }
 
     console.log(`\n[${now}] 🚨🚨🚨 Kikar alert`);
-    console.log("kikar", data);
+    console.log("kikar", JSON.stringify(data));
   } catch (error) {
     const now = new Date().toLocaleTimeString("he-IL");
     console.error(`[${now}] 🔥 שגיאה בשליפת התראה:`, error.message);
