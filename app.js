@@ -17,7 +17,13 @@ const sampleAlerts = async () => {
       throw new Error("Network response was not ok");
     }
 
-    const data = await response.json();
+    const dataText = await response.text();
+
+    if (dataText !== "null") {
+      console.log("koreText", dataText);
+    }
+
+    const data = await JSON.parse(dataText);
     const now = new Date().toLocaleTimeString("he-IL");
 
     if (!data) {
@@ -49,7 +55,12 @@ const kikarAlerts = async () => {
       throw new Error("Network response was not ok");
     }
 
-    const data = await response.json();
+    const dataText = await response.text();
+    if (dataText !== "[]") {
+      console.log("kikarText", dataText);
+    }
+
+    const data = await JSON.parse(dataText);
     const now = new Date().toLocaleTimeString("he-IL");
 
     if (!data || !data?.length) {
