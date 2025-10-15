@@ -76,6 +76,14 @@ const kikarAlerts = async () => {
   }
 };
 
+const test = async () => {
+  try {
+    const response = await fetch("https://www.pihiyot.co.il/api/alerts");
+  } catch (error) {
+    console.error(`[${now}] 🔥 שגיאה בשליפת התראה:`, error.message);
+  }
+};
+
 // דגימה כל שנייה
 setInterval(sampleAlerts, 1000);
 setInterval(kikarAlerts, 1000);
