@@ -80,6 +80,10 @@ const kikarAlerts = async () => {
 setInterval(sampleAlerts, 1000);
 setInterval(kikarAlerts, 1000);
 
+const test = async () => {
+  console.log("test");
+};
+
 // הפעלת שרת רק כדי שלא יסגר התהליך (אין צורך ב-API)
 app.listen(port, () => {
   console.log(`📡 Alert logger running (no API) on port ${port}`);
