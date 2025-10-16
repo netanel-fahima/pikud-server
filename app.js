@@ -76,10 +76,6 @@ const kikarAlerts = async () => {
   }
 };
 
-const test = async () => {
-  console.log("test");
-};
-
 // דגימה כל שנייה
 setInterval(sampleAlerts, 1000);
 setInterval(kikarAlerts, 1000);
